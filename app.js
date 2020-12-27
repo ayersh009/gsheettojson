@@ -18,6 +18,13 @@ app.use(function(req, res, next) {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.get('/', (req, res) => {
+  return res.status(200).json({
+    success: true,
+    message: 'Sheetapi Running Successfully'
+  });
+})
+
 // get api
 app.get('/api', api);
 
