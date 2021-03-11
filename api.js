@@ -1,4 +1,4 @@
-var request = require('request');
+var request = require('got');
 
 module.exports = function (req, res, next) {
     try {
@@ -11,7 +11,7 @@ module.exports = function (req, res, next) {
             showColumns = params.columns || true,
             url = 'https://spreadsheets.google.com/feeds/list/' + id + '/' + sheet + '/public/values?alt=json';
 
-        request(url, function (error, response, body) {
+        got(url, function (error, response, body) {
             if (!error && response.statusCode === 200) {
                 var data = JSON.parse(response.body);
                 var responseObj = {};
