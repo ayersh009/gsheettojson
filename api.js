@@ -15,6 +15,7 @@ module.exports = function (req, res, next) {
             if (!error && response.statusCode === 200) {
                 var data = JSON.parse(response.body);
                 var responseObj = {};
+                var title = data.feed.title.$t;
                 var rows = [];
                 var columns = {};
                 if (data && data.feed && data.feed.entry) {
@@ -63,7 +64,7 @@ module.exports = function (req, res, next) {
                         responseObj['columns'] = columns;
                     }
                     if (showRows === true) {
-                        responseObj['rows'] = rows;
+                        responseObj[title] = rows;
                     }
                     return res.status(200).json(responseObj);
                 } else {
